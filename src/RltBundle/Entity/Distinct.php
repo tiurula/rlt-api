@@ -29,9 +29,43 @@ class Distinct
      *
      * @Assert\NotBlank()
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
-    private $name;
+    private $distinct;
 
-    private $buildings;
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Distinct
+     */
+    public function setId(int $id): Distinct
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDistinct(): string
+    {
+        return $this->distinct;
+    }
+
+    /**
+     * @param string $distinct
+     * @return Distinct
+     */
+    public function setDistinct(string $distinct): Distinct
+    {
+        $this->distinct = $distinct;
+        return $this;
+    }
 }

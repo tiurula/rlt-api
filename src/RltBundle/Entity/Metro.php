@@ -2,6 +2,7 @@
 
 namespace RltBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -33,5 +34,74 @@ class Metro
      */
     private $name;
 
+    /**
+     * @var Building[]
+     *
+     * @Assert\Valid()
+     *
+     * @ORM\ManyToMany(targetEntity="ApiBundle\Entity\Building", mappedBy="metro", fetch="EXTRA_LAZY")
+     */
     private $buildings;
+
+    /**
+     * Metro constructor.
+     */
+    public function __construct()
+    {
+        $this->buildings = new ArrayCollection();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Metro
+     */
+    public function setId(int $id): Metro
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Metro
+     */
+    public function setName(string $name): Metro
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return Building[]
+     */
+    public function getBuildings(): array
+    {
+        return $this->buildings;
+    }
+
+    /**
+     * @param Building[] $buildings
+     * @return Metro
+     */
+    public function setBuildings(array $buildings): Metro
+    {
+        $this->buildings = $buildings;
+        return $this;
+    }
 }
